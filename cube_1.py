@@ -1,0 +1,14 @@
+import bpy
+
+# define vertices and faces for a cube
+coords=[ (-1,-1,-1), (1,-1,-1), (1,1,-1), (-1,1,-1), (-1,-1,1), (1,-1,1), (1,1,1), (-1,1,1) ]
+faces= [ (0,1,2,3), (4,5,6,7), (0,1,5,4), (1,2,6,5), (2,3,7,6), (3,0,4,7) ]
+
+mesh = bpy.data.meshes.new('TriangleCube')          # create a new mesh
+object = bpy.data.objects.new('TrinagleCube', mesh)
+
+object.location = bpy.context.scene.cursor_location
+bpy.context.scene.objects.link(object)
+
+mesh.from_pydata(coords, [], faces)
+mesh.update(calc_edges=True)
